@@ -9,15 +9,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class C_InsertSortTest {
+class D_QuickSortTest {
     static int[] act1, act2, exp1, exp2;
 
     @BeforeAll
     static void setup() {
-        act1 = new int[]{34, 23, 5, 24, 1, 9, 12};
-        exp1 = new int[]{1, 5, 9, 12, 23, 24, 34};
+        act1 = new int[]{5,3,8,9,2,4,7};
+        exp1 = new int[]{2,3,4,5,7,8,9};
         act2 = new int[]{40, 47, 38, 8, 33, 35};
         exp2 = new int[]{8, 33, 35, 38, 40, 47};
     }
@@ -29,11 +27,11 @@ class C_InsertSortTest {
         );
     }
 
-    @DisplayName("선택 정렬 테스트")
+    @DisplayName("퀵 정렬 테스트")
     @ParameterizedTest
     @MethodSource("provideAscendingSource")
-    void testInsertionSort(int[] actual, int[] expected) {
-        C_InsertSort.solution(actual);
+    void testQuickSort(int[] actual, int[] expected) {
+        D_QuickSort.solution(actual);
         Assertions.assertArrayEquals(expected, actual);
     }
 }
