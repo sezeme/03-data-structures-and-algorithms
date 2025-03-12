@@ -3,6 +3,7 @@ package com.sezeme.section03.greedy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /* 최소 신장 트리
@@ -63,6 +64,26 @@ public class F_KruskalAlgorithm {
             edges[i] = new Edge(u, v, weight);
         }
 
-        return 0L;
+        parent = new int[V + 1];
+        for(int i= 1; i <=V; i++){
+            parent[i] = i;
+        }
+
+        // 1. 가중치 오름차순 정렬 (기준은 내부에 삽입되어있음)
+        Arrays.sort(edges);
+
+        long totalWeight = 0L;
+
+        // 2. 가중치 작은 간선부터 선택해나가는 작업
+        for(Edge edge : edges) {
+            //각각의 정점이 연결되어 있는지 확인
+            if(find(edge.u) != find(edge.v)){
+                // 연결 되어 있지 않다면 정점을 연결
+                union(edge.u, edge.v);
+                totalWeight += edge.weight;
+            }
+        }
+
+        return totalWeight;
     }
 }
